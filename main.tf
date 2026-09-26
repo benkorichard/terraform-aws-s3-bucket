@@ -62,11 +62,22 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
     }
 
     noncurrent_version_expiration {
-      noncurrent_days = var.retention_days
+      noncurrent_days = 1
     }
 
     abort_incomplete_multipart_upload {
       days_after_initiation = 7
+    }
+  }
+
+  rule {
+    id     = "remove-expired-delete-markers"
+    status = "Enabled"
+
+    filter {}
+
+    expiration {
+      expired_object_delete_marker = true
     }
   }
 }
