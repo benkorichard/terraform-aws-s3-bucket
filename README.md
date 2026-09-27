@@ -1,8 +1,12 @@
 # terraform-aws-s3-bucket
 
-This module creates a private, versioned S3 bucket with encryption, public access blocking, HTTPS-only access, and lifecycle expiration for current and noncurrent object versions.
-
-The caller controls the retention period and uploader role. The configured role can upload objects and use multipart uploads, but cannot read or delete them.
+This module creates an S3 bucket with the following features:
+- Versioning enabled
+- Encryption enabled
+- Public access blocked
+- HTTPS-only access
+- Lifecycle expiration for current and noncurrent object versions
+- Retention period and uploader role configurable by the caller
 
 ## Usage
 
@@ -10,8 +14,8 @@ The caller controls the retention period and uploader role. The configured role 
 module "backup_bucket" {
 	source = "github.com/benkorichard/terraform-aws-s3-bucket"
 
-	bucket_name = "application-backups-example"
-	retention_days = var.backup_retention_days
-	uploader_role_arn = var.backup_uploader_role_arn
+	bucket_name       = "application-backups-example"
+	retention_days 	  = 180
+	uploader_role_arn = "arn:aws:iam::000000000000:role/role_name"
 }
 ```

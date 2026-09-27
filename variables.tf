@@ -4,7 +4,7 @@ variable "bucket_name" {
 }
 
 variable "retention_days" {
-  description = "Number of days to retain current and noncurrent object versions."
+  description = "Number of days to retain object versions."
   type        = number
 
   validation {
